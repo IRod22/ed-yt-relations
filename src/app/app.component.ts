@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RelationsService } from './relations.service'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'ed-yt-relations';
+  profiles = this.relationsService.nodes
+  constructor(public relationsService: RelationsService) { }
 }
