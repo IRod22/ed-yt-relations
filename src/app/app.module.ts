@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RelationsService } from './relations.service';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,9 @@ import { ProfileComponent } from './profile/profile.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    RelationsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
