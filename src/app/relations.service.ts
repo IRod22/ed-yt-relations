@@ -12,7 +12,6 @@ export type Node = {
 }
 
 export type Edge = {
-  id: string,
   name: Direction<string>,
   node1: string,
   node2: string,
