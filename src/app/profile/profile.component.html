@@ -1,0 +1,7 @@
+<section>
+    <h2 [id]="id">{{ name }}</h2>
+    <p>{{ name }} is {{ description }}</p>
+    <p *ngIf="website"><a [href]="website">{{ website }}</a></p>
+    <p *ngIf="yt">Watch {{ name }} on <a [href]="yt">YouTube</a>.</p>
+    <p *ngIf="twitter.url">Check out <a [href]="twitter.url">{{ twitter.username }}</a> on twitter.</p>
+</section>
