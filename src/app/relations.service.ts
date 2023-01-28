@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Maybe, None, Just } from './utils/maybe'
+import { Direction, OneWay, BothWays } from './utils/direction'
 
 export type Node = {
   id: string,
@@ -12,8 +13,7 @@ export type Node = {
 
 export type Edge = {
   id: string,
-  name: string,
-  bidirectional?: boolean,
+  name: Direction<string>,
   node1: string,
   node2: string,
 }
