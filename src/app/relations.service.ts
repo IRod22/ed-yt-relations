@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
-import { Maybe, None, Just } from './utils/maybe'
-import { Direction, OneWay, BothWays } from './utils/direction'
+import { Maybe, None, Just, map, getDefault } from './utils/maybe'
+import { Direction, OneWay, BothWays, getFrom, getTo } from './utils/direction'
+import { groupBy } from './utils/groupBy'
 
 export type Node = {
   id: string,
@@ -16,6 +17,8 @@ export type Edge = {
   node1: string,
   node2: string,
 }
+
+export type Relation = { relation: string, related: {id: string, name: string}[] }
 
 @Injectable({
   providedIn: 'root'
@@ -86,4 +89,34 @@ export class RelationsService {
     },
   ]
   constructor() { }
+  getNode(id:string): Maybe<Node> {
+    for (const node of this.nodes) {
+      if (node.id == id) return Just(node)
+    }
+    return None()
+  }
+  getRelations(id: string) {
+    return getDefault(map(this.getNode(id), () => {
+      return groupBy({
+        array: this.edges.filter(e => (e.node1 == id) || (e.node2 == id)),
+        selectCol: e => e.node1 == id ? e.node2 : e.node1,
+        groupCol: e => e.node1 == id ? getFrom(e.name) : getTo(e.name),
+        eq: (a, b) => a == b,
+        group: (key, values) => {
+          const nodes = values.map(v => this.getNode(v))
+          return {
+            relation: key,
+            related: nodes.filter(n => getDefault(map(n, () => true), false)).map(n => n({
+              just({id, name}) {
+                return {id: `#${id}`, name}
+              },
+              none() {
+                return {id:'', name:''}
+              },
+            })),
+          }
+        },
+      })
+    }), [])
+  }
 }
