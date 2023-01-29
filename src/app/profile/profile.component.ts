@@ -9,7 +9,7 @@ import { getDefault, map } from '../utils/maybe'
 })
 export class ProfileComponent {
   @Input() profile!: Node
-  constructor() {}
+  constructor(private relationsService: RelationsService) {}
   get website() {
     return getDefault(this.profile.website, '')
   }
@@ -30,5 +30,8 @@ export class ProfileComponent {
   }
   get description() {
     return this.profile.description
+  }
+  get relations() {
+    return this.relationsService.getRelations(this.id)
   }
 }
