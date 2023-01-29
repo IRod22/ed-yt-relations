@@ -52,7 +52,7 @@ export class RelationsService {
     {
       id: 'wendoverpro',
       name: 'Wendover Production',
-      description: 'is about economics and aviation and explains several topics using economics, history, geography, and science.',
+      description: 'about economics and aviation and explains several topics using economics, history, geography, and science.',
       twitter: Just('wendoverpro'),
       yt: Just({id:'Wendoverproductions', short: true}),
       website: Just('https://www.wendoverproductions.com/'),
@@ -60,7 +60,7 @@ export class RelationsService {
     {
       id: 'polymatter',
       name: 'PolyMatter',
-      description: 'is about explaining several topics using economics, history, geography, and science.',
+      description: 'about explaining several topics using economics, history, geography, and science.',
       twitter: Just('Polymatters'),
       yt: Just({id:'UCgNg3vwj3xt7QOrcIDaHdFg', short: false}),
       website: Just('https://www.polymatter.yt'),
