@@ -1,13 +1,13 @@
-<section>
+<section class="hoverable">
     <h2 [id]="id">{{ name }}</h2>
     <p>{{ name }} is {{ description }}</p>
     <p *ngIf="website"><a [href]="website">{{ website }}</a></p>
     <p *ngIf="yt">Watch {{ name }} on <a [href]="yt">YouTube</a>.</p>
     <p *ngIf="twitter.url">Check out <a [href]="twitter.url">{{ twitter.username }}</a> on Twitter.</p>
-    <div *ngFor="let rel of relations">
-        <h3>{{rel.relation.toUpperCase()}}</h3>
+    <div *ngFor="let rel of relations" class="hoverable relation">
+        <h3>{{rel.relation}}</h3>
         <ul>
-            <li *ngFor="let related of rel.related"><a [href]="related.id">{{ related.name }}</a></li>
+            <li *ngFor="let related of rel.related">{{ related.name }} <a [href]="related.id">&rarr;</a></li>
         </ul>
     </div>
 </section>
